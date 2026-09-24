@@ -1,0 +1,77 @@
+{
+  "title": "幸运大转盘",
+  "subtitle": "转动转盘，好运即刻降临",
+  "draw_limit": 0,
+  "prizes": [
+    {
+      "name": "一等奖 · 蓝牙耳机",
+      "icon": "🎧",
+      "probability": 0.5,
+      "color": "#ff3d81",
+      "stock": 1
+    },
+    {
+      "name": "谢谢参与",
+      "icon": "🍀",
+      "probability": 30,
+      "color": "#5a6b8c",
+      "stock": null
+    },
+    {
+      "name": "二等奖 · 机械键盘",
+      "icon": "⌨️",
+      "probability": 1.5,
+      "color": "#ff9f43",
+      "stock": 2
+    },
+    {
+      "name": "优惠券 ×1",
+      "icon": "🎫",
+      "probability": 20,
+      "color": "#4d8cff",
+      "stock": null
+    },
+    {
+      "name": "三等奖 · 保温杯",
+      "icon": "🥤",
+      "probability": 3,
+      "color": "#ffd93d",
+      "stock": 3
+    },
+    {
+      "name": "幸运积分 ×100",
+      "icon": "💎",
+      "probability": 12,
+      "color": "#00d4b8",
+      "stock": null
+    },
+    {
+      "name": "神秘小礼品",
+      "icon": "🎁",
+      "probability": 6,
+      "color": "#a55eea",
+      "stock": 5
+    },
+    {
+      "name": "再来一次",
+      "icon": "🔄",
+      "probability": 10,
+      "color": "#26c6da",
+      "stock": null
+    },
+    {
+      "name": "5 元红包",
+      "icon": "🧧",
+      "probability": 8,
+      "color": "#ff5b5b",
+      "stock": null
+    },
+    {
+      "name": "1 元红包",
+      "icon": "💰",
+      "probability": 9,
+      "color": "#7bed9f",
+      "stock": null
+    }
+  ]
+}
