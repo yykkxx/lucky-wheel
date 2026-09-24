@@ -18,6 +18,30 @@
     --shadow:0 18px 50px rgba(0,0,0,.45);
   }
 
+  [data-theme="light"]{
+    --gold:#c8951a;
+    --gold-2:#b07a14;
+    --pink:#d4347a;
+    --ink:#f5f3ee;
+    --panel:rgba(0,0,0,.04);
+    --panel-brd:rgba(0,0,0,.12);
+    --txt:#1a1a2e;
+    --txt-dim:rgba(26,26,46,.55);
+    --shadow:0 18px 50px rgba(0,0,0,.12);
+  }
+  [data-theme="light"] .bg-fx{
+    background:
+      radial-gradient(1200px 800px at 15% -10%, #e8d8f0 0%, transparent 60%),
+      radial-gradient(1000px 700px at 90% 0%, #f8e0e0 0%, transparent 55%),
+      radial-gradient(900px 900px at 50% 120%, #e0e8f5 0%, transparent 60%),
+      linear-gradient(160deg,#f5f3ee 0%,#ede8e4 45%,#f0eee8 100%);
+  }
+  [data-theme="light"] .grid-fx{
+    background-image:linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);
+  }
+  [data-theme="light"] .orb{opacity:.28}
+
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{
@@ -352,6 +376,103 @@
     box-shadow:0 6px 18px rgba(255,176,46,.3)
   }
   .install-btn.show{display:inline-flex;align-items:center;gap:6px}
+
+  /* ---------------- 主题切换 ---------------- */
+  .theme-btn{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--panel-brd);
+    background:var(--panel);cursor:pointer;display:grid;place-items:center;
+    font-size:16px;transition:all .2s;backdrop-filter:blur(12px)
+  }
+  .theme-btn:hover{background:rgba(255,255,255,.14);transform:scale(1.08)}
+
+  /* ---------------- 全屏按钮 ---------------- */
+  .fs-btn{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--panel-brd);
+    background:var(--panel);cursor:pointer;display:grid;place-items:center;
+    font-size:15px;transition:all .2s;backdrop-filter:blur(12px)
+  }
+  .fs-btn:hover{background:rgba(255,255,255,.14);transform:scale(1.08)}
+
+  /* ---------------- 底部页脚 ---------------- */
+  footer{
+    margin-top:28px;padding:20px 0 8px;text-align:center;
+    border-top:1px solid var(--panel-brd);
+    font-size:12px;color:var(--txt-dim);line-height:1.8
+  }
+  footer a{color:var(--gold);text-decoration:none;transition:opacity .2s}
+  footer a:hover{opacity:.75}
+  footer .sep{margin:0 8px;opacity:.4}
+
+  /* ---------------- 记录标签 ---------------- */
+  .hist .h-badge{
+    font-size:10px;padding:2px 7px;border-radius:999px;font-weight:700;
+    flex:none;white-space:nowrap
+  }
+  .hist .h-badge.win{background:rgba(255,215,106,.18);color:var(--gold);
+    border:1px solid rgba(255,215,106,.3)}
+  .hist .h-badge.lose{background:rgba(255,255,255,.06);color:var(--txt-dim);
+    border:1px solid var(--panel-brd)}
+
+  /* ---------------- 分享按钮 ---------------- */
+  .card .btns .btn.share{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)
+  }
+  .card .btns .btn.share:hover{background:rgba(255,255,255,.16)}
+
+  /* ---------------- 数字滚动动画 ---------------- */
+  .stat-mini .v.bump{animation:numBump .4s cubic-bezier(.2,1.5,.4,1)}
+  @keyframes numBump{40%{transform:scale(1.25);color:#fff}100%{transform:scale(1)}}
+
+  .chip b.bump{animation:numBump .4s cubic-bezier(.2,1.5,.4,1)}
+
+  /* ---------------- 骨架屏 ---------------- */
+  .skel{
+    background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);
+    background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px
+  }
+  @keyframes shimmer{to{background-position:-200% 0}}
+  .skel-line{height:14px;margin-bottom:8px}
+  .skel-circle{width:34px;height:34px;border-radius:11px}
+
+  /* ---------------- 抽奖次数限制提示 ---------------- */
+  .limit-banner{
+    display:none;padding:10px 16px;border-radius:13px;margin-bottom:14px;
+    font-size:12.5px;text-align:center;
+    background:rgba(255,183,80,.12);border:1px solid rgba(255,183,80,.25);
+    color:var(--gold)
+  }
+  .limit-banner.show{display:block}
+  .limit-banner b{font-size:15px}
+
+  /* ---------------- 奖品高亮（最近中奖） ---------------- */
+  .prize-list li.recent{
+    animation:recentFlash 1.2s ease-out
+  }
+  @keyframes recentFlash{
+    0%{background:rgba(255,215,106,.25)}
+    100%{background:transparent}
+  }
+
+  /* ---------------- 确认弹窗 ---------------- */
+  .confirm-overlay{
+    position:fixed;inset:0;z-index:85;display:grid;place-items:center;
+    background:rgba(6,4,18,.6);backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;padding:20px
+  }
+  .confirm-overlay.show{opacity:1;visibility:visible}
+  .confirm-box{
+    width:min(360px,92vw);border-radius:20px;padding:26px 22px;text-align:center;
+    background:linear-gradient(165deg,rgba(46,32,84,.97),rgba(20,14,42,.99));
+    border:1px solid rgba(255,255,255,.16);
+    box-shadow:0 24px 64px rgba(0,0,0,.55);
+    transform:translateY(20px) scale(.92);opacity:0;
+    transition:transform .3s cubic-bezier(.2,1.3,.35,1),opacity .25s
+  }
+  .confirm-overlay.show .confirm-box{transform:none;opacity:1}
+  .confirm-box .ico{font-size:40px;margin-bottom:10px}
+  .confirm-box .msg{font-size:14.5px;color:var(--txt);margin-bottom:20px;line-height:1.6}
+  .confirm-box .btns{padding:0}
 </style>
 </head>
 <body>
@@ -378,11 +499,14 @@
       <div class="chip">🎁 奖品 <b id="statKinds">0</b> 种</div>
       <div class="chip" id="soundChip" style="cursor:pointer">🔊 音效</div>
       <button class="install-btn" id="installBtn">📦 安装应用</button>
+      <button class="fs-btn" id="fsBtn" title="全屏">⛶</button>
+      <button class="theme-btn" id="themeBtn" title="切换主题">🌙</button>
     </div>
   </header>
 
   <main>
     <section class="panel stage">
+      <div class="limit-banner" id="limitBanner"></div>
       <div class="wheel-wrap">
         <canvas id="wheel"></canvas>
         <div class="pointer" id="pointer"></div>
@@ -418,6 +542,16 @@
       </div>
     </aside>
   </main>
+
+  <footer>
+    🎡 <strong>幸运大转盘 Lucky Wheel</strong>
+    <span class="sep">·</span>
+    纯 Python 标准库零依赖
+    <span class="sep">·</span>
+    <a href="https://github.com/yykkxx/lucky-wheel" target="_blank" rel="noopener">GitHub 仓库</a>
+    <span class="sep">·</span>
+    MIT License
+  </footer>
 </div>
 
 <div class="modal" id="modal">
@@ -429,6 +563,7 @@
     <p class="r-meta" id="rMeta"></p>
     <div class="btns">
       <button class="btn gold" id="btnAgain">🎲 再抽一次</button>
+      <button class="btn share" id="btnShare">📤 分享</button>
       <button class="btn" id="btnClose">关闭</button>
     </div>
   </div>
@@ -437,6 +572,17 @@
 <div class="retry-bar" id="retryBar">
   <span class="msg" id="retryMsg">连接已断开</span>
   <button id="retryBtn">重试</button>
+</div>
+
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="ico" id="confirmIco">⚠️</div>
+    <div class="msg" id="confirmMsg">确定要执行此操作吗？</div>
+    <div class="btns">
+      <button class="btn gold" id="confirmOk">确定</button>
+      <button class="btn" id="confirmCancel">取消</button>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -995,6 +1141,25 @@
     // 更新概率面板中的剩余数量
     refreshPoolView();
 
+    // 高亮中奖的奖品项
+    if (isWin) {
+      const items = $("prizeList").querySelectorAll("li");
+      const idx = result.index;
+      if (items[idx]) {
+        items[idx].classList.remove("recent");
+        void items[idx].offsetWidth;
+        items[idx].classList.add("recent");
+      }
+    }
+
+    // 抽奖次数限制检查
+    if (S.config && S.config.draw_limit > 0 && result.draws >= S.config.draw_limit) {
+      const banner = $("limitBanner");
+      banner.innerHTML = "已达抽奖上限 <b>" + S.config.draw_limit + "</b> 次";
+      banner.classList.add("show");
+      spinBtn.disabled = true;
+    }
+
     setTimeout(() => showModal(result, isWin), isWin ? 520 : 320);
 
     S.spinning = false;
@@ -1034,12 +1199,23 @@
 
   function bumpDraws(n) {
     if (n === null || n === undefined) return;
-    $("statDraws").textContent = n;
+    const el = $("statDraws");
+    if (el.textContent !== String(n)) {
+      el.textContent = n;
+      el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump");
+    }
   }
 
   function updateMiniStats(draws, wins) {
-    $("miniDraws").textContent = draws;
-    $("miniWins").textContent = wins;
+    const dEl = $("miniDraws"), wEl = $("miniWins");
+    if (dEl.textContent !== String(draws)) {
+      dEl.textContent = draws;
+      dEl.classList.remove("bump"); void dEl.offsetWidth; dEl.classList.add("bump");
+    }
+    if (wEl.textContent !== String(wins)) {
+      wEl.textContent = wins;
+      wEl.classList.remove("bump"); void wEl.offsetWidth; wEl.classList.add("bump");
+    }
     // 限量奖品剩余总量
     let totalLeft = 0, hasStock = false;
     (S.prizes || []).forEach(p => {
@@ -1049,7 +1225,12 @@
         totalLeft += left;
       }
     });
-    $("miniRemaining").textContent = hasStock ? totalLeft : "∞";
+    const rEl = $("miniRemaining");
+    const rTxt = hasStock ? String(totalLeft) : "∞";
+    if (rEl.textContent !== rTxt) {
+      rEl.textContent = rTxt;
+      rEl.classList.remove("bump"); void rEl.offsetWidth; rEl.classList.add("bump");
+    }
   }
 
   function refreshPoolView() {
@@ -1112,11 +1293,13 @@
       return;
     }
     S.history.forEach(r => {
+      const isWin = !/谢谢|未中奖|感谢参与|再来一次|下次/.test(r.name || "");
       const li = document.createElement("li");
       const t = (r.time || "").split(" ")[1] || r.time || "";
       li.innerHTML =
         '<span class="h-ico">' + escapeHtml(r.icon || "🎁") + '</span>' +
         '<span class="h-name">' + escapeHtml(r.name || "") + '</span>' +
+        '<span class="h-badge ' + (isWin ? "win" : "lose") + '">' + (isWin ? "中奖" : "未中") + '</span>' +
         '<span class="h-time">' + escapeHtml(t) + '</span>';
       ul.appendChild(li);
     });
@@ -1148,6 +1331,22 @@
     buildSegs();
     renderPrizes();
     if (cfg.draws !== undefined) bumpDraws(cfg.draws);
+
+    // 抽奖次数限制
+    const banner = $("limitBanner");
+    if (cfg.draw_limit > 0 && cfg.draws !== undefined) {
+      const remaining = cfg.draw_limit - cfg.draws;
+      if (remaining > 0) {
+        banner.innerHTML = "剩余抽奖次数 <b>" + remaining + "</b> / " + cfg.draw_limit;
+        banner.classList.add("show");
+      } else {
+        banner.innerHTML = "已达抽奖上限 <b>" + cfg.draw_limit + "</b> 次";
+        banner.classList.add("show");
+        spinBtn.disabled = true;
+      }
+    } else {
+      banner.classList.remove("show");
+    }
   }
 
   function loadConfig(force, silent) {
@@ -1191,18 +1390,77 @@
   $("btnRefresh").addEventListener("click", () => loadConfig(true, false));
 
   $("btnReset").addEventListener("click", () => {
-    if (!confirm("确定要清空全部抽奖记录与库存用量吗？")) return;
-    apiPost("/api/reset", 8000)
-      .then(() => {
-        S.history = [];
-        S.winCount = 0;
-        renderHistory();
-        bumpDraws(0);
-        updateMiniStats(0, 0);
-        toast("已清空记录");
-        return loadConfig(true, true);
-      })
-      .catch(() => toast("操作失败"));
+    showConfirm("🧹", "确定要清空全部抽奖记录与库存用量吗？", () => {
+      apiPost("/api/reset", 8000)
+        .then(() => {
+          S.history = [];
+          S.winCount = 0;
+          renderHistory();
+          bumpDraws(0);
+          updateMiniStats(0, 0);
+          toast("已清空记录");
+          return loadConfig(true, true);
+        })
+        .catch(() => toast("操作失败"));
+    });
+  });
+
+  /* ================= 自定义确认弹窗 ================= */
+  function showConfirm(ico, msg, onOk) {
+    $("confirmIco").textContent = ico || "⚠️";
+    $("confirmMsg").textContent = msg || "确定？";
+    $("confirmOverlay").classList.add("show");
+    const ok = $("confirmOk"), cancel = $("confirmCancel");
+    const cleanup = () => {
+      $("confirmOverlay").classList.remove("show");
+      ok.replaceWith(ok.cloneNode(true));
+      cancel.replaceWith(cancel.cloneNode(true));
+    };
+    ok.addEventListener("click", () => { cleanup(); onOk && onOk(); }, { once: true });
+    cancel.addEventListener("click", cleanup, { once: true });
+  }
+  $("confirmOverlay").addEventListener("click", e => {
+    if (e.target.id === "confirmOverlay") $("confirmOverlay").classList.remove("show");
+  });
+
+  /* ================= 全屏 ================= */
+  $("fsBtn").addEventListener("click", () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+  });
+  document.addEventListener("fullscreenchange", () => {
+    $("fsBtn").textContent = document.fullscreenElement ? "ESC" : "⛶";
+  });
+
+  /* ================= 主题切换 ================= */
+  let darkTheme = true;
+  $("themeBtn").addEventListener("click", () => {
+    darkTheme = !darkTheme;
+    const root = document.documentElement;
+    if (darkTheme) {
+      root.removeAttribute("data-theme");
+      $("themeBtn").textContent = "🌙";
+    } else {
+      root.setAttribute("data-theme", "light");
+      $("themeBtn").textContent = "☀️";
+    }
+  });
+
+  /* ================= 分享 ================= */
+  $("btnShare").addEventListener("click", async () => {
+    const name = $("rName").textContent;
+    const text = "我在幸运大转盘抽中了「" + name + "」！🎡";
+    if (navigator.share) {
+      try { await navigator.share({ title: "幸运大转盘", text }); } catch (e) {}
+    } else {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast("结果已复制到剪贴板");
+      } catch (e) { toast("无法分享"); }
+    }
   });
 
   $("retryBtn").addEventListener("click", doRetry);
